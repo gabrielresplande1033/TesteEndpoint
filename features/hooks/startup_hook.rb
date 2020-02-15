@@ -1,13 +1,13 @@
-Before "@startup" do
-  @nome = Faker::Company.name
-  @cidade = Faker::Address.city
+Before '@startup' do
 
-  body = {
-    "nome": @nome,
-    "cidade": @cidade,
-  }
+    @nome = Faker::Company.name
+    @cidade = Faker::Address.city
 
-  @body = JSON.generate(body)
+    @body = {
+        "nome": @nome,
+        "cidade": @cidade
+    }
 
-  @startup = Startup.new(@body)
+    @startup = Startup.new(@body)
+    
 end

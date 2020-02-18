@@ -1,3 +1,5 @@
+require 'json'
+
 Dado("o endereço da API para manter o cadastro de Startup") do
 end
 
@@ -9,7 +11,7 @@ Então("a API irá retornar os dados do cadastro da Startup respondendo o códig
   expect($response.code).to eq(201)
   puts "response code: #{$response.code}"
   expect($response.message).to eq("Created")
-  puts "response message #{$response.message}" #{}
+  puts "response message #{$response.message}" 
 
   puts "ID Response : #{$response["id"]}"
   puts "OwnID : #{$response["ownId"]}"
@@ -60,4 +62,21 @@ Então("a API irá retornar os dados do pagamento correspondente constando o có
   puts "Pagamento GetMessage: #{$getPagamento.message}"
   puts "Pagamento code: #{$getPagamento.code}"
 end
+
+Quando("realizar uma requisição para cadastrar uma startup Sem Parametro") do
+   $cadastroStartupSemParametro = @startup.postStartupSemParametroId
+end
+
+Então("a API irá retornar o erro {int}") do |int|
+  puts "Cadastro sem parametro: #{$cadastroStartupSemParametro.code}"
+  puts "Cadastro sem parametro: #{$cadastroStartupSemParametro.message}"
+  puts "Customer : #{$cadastroStartupSemParametro["errors"]}"
+  puts "Customer : #{$cadastroStartupSemParametro["errors"][0]["code"]}"
+
+  resultado = "#{$cadastroStartupSemParametro.body.force_encoding("UTF-8").to_json}"
+  
+  # puts "Customer: #{$resultado["errors"]["code"]}"
+end
+
+
 

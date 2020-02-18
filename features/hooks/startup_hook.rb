@@ -18,6 +18,22 @@ Before "@startup" do
     },
   }
 
+  body3 = {
+    "items": [
+      {
+        "product": "",
+        "quantity": 1,
+        "detail": "Box de seriado com 8 dvds",
+        "price": 7300,
+      },
+    ],
+    "customer": {
+      "ownId": "cliente_xyz",
+      "fullname": "João Silva",
+      "email": "joaosilva@email.com",
+    },
+  }
+
   body2 = { 
     "installmentCount":2,
     "fundingInstrument":{ 
@@ -46,8 +62,9 @@ Before "@startup" do
 
   @body = body.to_json
   @body2 = body2.to_json
+  @body3 = body3.to_json
   
-  @startup = Startup.new(@body, @body2)
+  @startup = Startup.new(@body, @body2, @body3)
 end
 # @cidade = Faker::Address.city
 

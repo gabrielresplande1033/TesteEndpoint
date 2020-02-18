@@ -25,3 +25,8 @@ Cenário: Consultar um Pagamento
     Dado o endereço da API para consultar um Pagamento
     Quando realizar uma requisição passando o ID do Pagamento
     Então a API irá retornar os dados do pagamento correspondente constando o código 200
+
+Cenário: Cadastrar uma StartupSemParametro
+    Dado o endereço da API para manter o cadastro de Startup
+    Quando realizar uma requisição para cadastrar uma startup Sem Parametro
+    Então a API irá retornar o erro 500

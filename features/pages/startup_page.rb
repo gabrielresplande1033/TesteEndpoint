@@ -3,17 +3,17 @@ class Startup
   require_relative "../hooks/startup_hook"
   base_uri "https://sandbox.moip.com.br/v2"
 
-  def initialize(body, body2)
+  def initialize(body, body2, body3)
     self.class.headers "Content-Type" => "application/json"
     self.class.headers "Authorization" => "Basic RkNaUkJFTTdIQ1BUVDZVUVE4WEhVOVhUM1k5QzhUQ0k6SEFMREdXVUJHWFVSQzdVODY1U0tZUjdMWlROSE1JUFpNRDdLTVlRQQ=="
     self.class.headers "username" => "FCZRBEM7HCPTT6UQQ8XHU9XT3Y9C8TCI"
     self.class.headers "password" => "HALDGWUBGXURC7U865SKYR7LZTNHMIPZMD7KMYQA"
     @options = { :body => body }
     @options3 = { :body => body2 }
+    @options2 = { :body => body3}
   end
 
   def postStartup
-    puts " JsonFunciona-#{@options}"
     self.class.post("/orders", @options)
   end
 
@@ -27,6 +27,10 @@ class Startup
 
   def getPagamento(id)
     self.class.get("/payments/#{id}")
+  end
+
+  def postStartupSemParametroId
+    self.class.post("/orders", @options2)
   end
 
   # def putStartup(id)

@@ -3,9 +3,9 @@ require 'json'
 Dado("o endereço da API para manter o cadastro de Startup") do
 end
 
-Quando("realizar uma requisição para cadastrar uma startup") do
-  $response = @startup.postStartup
-end
+# Quando("realizar uma requisição para cadastrar uma startup") do
+#   $response = @startup.postStartup
+# end
 
 Então("a API irá retornar os dados do cadastro da Startup respondendo o código {int}") do |int|
   expect($response.code).to eq(201)
@@ -78,5 +78,18 @@ Então("a API irá retornar o erro {int}") do |int|
   # puts "Customer: #{$resultado["errors"]["code"]}"
 end
 
+Dado("que tenho o pedido {string}") do |codigo|
+  file = File.read(File.join(Dir.pwd, "features/support/fixtures/pedido.json"))
+  @pedido = JSON.parse(file.force_encoding("UTF-8"))
+end
 
+Quando("realizar uma requisição para cadastrar uma startup") do
+  $response = @startup.postStartup(@pedido.to_json)
+end
+
+Então("a API irá retornar a mensagem {string}") do |msg|
+  puts "message: #{$response.body}"
+  # expect($response.code).to eq(statusCode)
+  expect($response.message).to eq(msg)
+end
 

@@ -13,8 +13,8 @@ class Startup
     @options2 = { :body => body3}
   end
 
-  def postStartup
-    self.class.post("/orders", @options)
+  def postStartup(pedido)
+    self.class.post("/orders",body: pedido)
   end
 
   def getStartup(id)

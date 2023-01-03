@@ -14,7 +14,7 @@ gem 'syntax'
 gem 'poltergeist'
 gem 'rubocop'
 gem 'cucumber_analytics'
-gem 'httparty', '~> 0.13.7'
+gem 'httparty', '~> 0.21.0'
 gem 'faker', '~> 1.6', '>= 1.6.6'
 gem 'bundler'
 gem 'date_format' #docs http://rpatil.github.io/date-format/
